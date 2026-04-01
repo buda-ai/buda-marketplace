@@ -1,0 +1,16 @@
+name: Build Index
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/build-index.js
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update index files [skip ci]"
+          file_pattern: "skills/index.json agents/index.json"
