@@ -1,10 +1,8 @@
-# Agent Skills
+# Buda Marketplace
 
-This repository follows the [Agent Skills specification](https://agentskills.io/specification).
+This repository powers the official [Buda.im](https://buda.im) Marketplace — the source of truth for official Skills and Agents available in Buda.
 
-## What are Agent Skills?
-
-Agent Skills are structured, reusable instruction sets that agents load on demand. Each skill lives in its own directory and contains a `SKILL.md` file with YAML frontmatter (name, description, and optional fields) followed by Markdown instructions.
+Buda reads this repository to populate its Marketplace, where users can discover and install pre-built Skills and Agents.
 
 ## Repository Structure
 
@@ -24,7 +22,7 @@ agents/                        # Agent definitions
 
 ## skills/
 
-Each subdirectory is a self-contained skill following the Agent Skills spec.
+Skills follow the [Agent Skills specification](https://agentskills.io/specification). Each subdirectory is a self-contained skill.
 
 ### SKILL.md Frontmatter Fields
 
@@ -55,15 +53,14 @@ description: A description of what this skill does and when to use it.
 
 ## agents/
 
-Each subdirectory defines an agent and the skills it uses.
+Agents are pre-configured Buda agents. When a user installs an agent from the Marketplace, Buda provisions it with the defined `AGENTS.md` and installs all listed skills automatically.
 
-### AGENTS.md
+Each agent directory contains:
 
-Describes the agent's purpose, behavior, and instructions.
+- **`AGENTS.md`** — The agent's system prompt and behavioral instructions, loaded when the agent starts in Buda.
+- **`skills.json`** — The list of skills to install for this agent. Each entry references a GitHub repository and an optional skill name.
 
-### skills.json
-
-Lists the skills the agent uses. Each entry specifies a GitHub repository URL and an optional `--skillname` to select a specific skill from that repo.
+### skills.json Format
 
 ```json
 [
@@ -75,4 +72,12 @@ Lists the skills the agent uses. Each entry specifies a GitHub repository URL an
 ```
 
 - `url`: GitHub repository containing the skill
-- `skillname`: (optional) name of the specific skill directory within the repo
+- `skillname`: (optional) specific skill directory within the repo to install
+
+### Example: agents/agent-seo
+
+```
+agents/agent-seo/
+├── AGENTS.md       # SEO agent instructions
+└── skills.json     # Skills to install: seo-audit, keyword-research, etc.
+```
