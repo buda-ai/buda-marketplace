@@ -3,7 +3,15 @@
   "skills": [
     {
       "url": "./",
+      "skillname": "baoyu-image-gen"
+    },
+    {
+      "url": "./",
       "skillname": "hi"
+    },
+    {
+      "url": "./",
+      "skillname": "wechat-publish-pipeline"
     },
     {
       "url": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
