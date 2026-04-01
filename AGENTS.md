@@ -28,7 +28,7 @@ agents/                        # Agent definitions
 
 Skills follow the [Agent Skills specification](https://agentskills.io/specification). Each subdirectory is a self-contained skill.
 
-`skills/index.json` lists external skills from other repositories to be featured in the Marketplace. Format is the same as `agents/*/skills.json`.
+`skills/index.json` lists skills to be featured in the Marketplace — both local skills in this repo and external skills from other repositories. Format is the same as `agents/*/skills.json`, with `url: "./"` for local skills and a GitHub URL for external ones.
 
 ### SKILL.md Frontmatter Fields
 
