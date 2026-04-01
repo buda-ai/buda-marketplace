@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://github.com/github/awesome-copilot",
+    "skillname": "gh-cli"
+  },
+  {
+    "url": "https://github.com/github/awesome-copilot",
+    "skillname": "git-commit"
+  },
+  {
+    "url": "https://github.com/google-gemini/gemini-cli",
+    "skillname": "code-reviewer"
+  }
+]
