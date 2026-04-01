@@ -1,0 +1,26 @@
+[
+  {
+      "url": "https://github.com/apify/agent-skills",
+      "skillname": "apify-ultimate-scraper"
+  },
+  {
+      "url": "https://github.com/apify/agent-skills",
+      "skillname": "apify-ecommerce"
+  },
+  {
+      "url": "https://github.com/apify/agent-skills",
+      "skillname": "apify-trend-analysis"
+  },
+  {
+      "url": "https://github.com/buda-ai/buda-marketplace",
+      "skillname": "baoyu-image-gen"
+  },
+  {
+      "url": "https://github.com/jezweb/claude-skills",
+      "skillname": "shopify-setup"
+  },
+  {
+      "url": "https://github.com/jezweb/claude-skills",
+      "skillname": "shopify-products"
+  }
+]
