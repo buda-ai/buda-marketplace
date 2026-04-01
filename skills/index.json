@@ -84,6 +84,78 @@
     {
       "url": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
       "skillname": "memory-management"
+    },
+    {
+      "url": "https://github.com/github/awesome-copilot",
+      "skillname": "gh-cli"
+    },
+    {
+      "url": "https://github.com/github/awesome-copilot",
+      "skillname": "git-commit"
+    },
+    {
+      "url": "https://github.com/anthropics/skills",
+      "skillname": "frontend-design"
+    },
+    {
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "skillname": "code-reviewer"
+    },
+    {
+      "url": "https://github.com/anthropics/skills",
+      "skillname": "webapp-testing"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "social-content"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "seo-audit"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "copywriting"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "analytics-tracking"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "paid-ads"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "ai-seo"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "cold-email"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "sales-enablement"
+    },
+    {
+      "url": "https://github.com/coreyhaines31/marketingskills",
+      "skillname": "email-sequence"
+    },
+    {
+      "url": "https://github.com/resend/email-best-practices",
+      "skillname": "email-best-practices"
+    },
+    {
+      "url": "https://github.com/resend/resend-skills",
+      "skillname": "resend"
+    },
+    {
+      "url": "https://github.com/apify/agent-skills",
+      "skillname": "apify-ultimate-scraper"
+    },
+    {
+      "url": "https://github.com/composiohq/awesome-claude-skills",
+      "skillname": "lead-research-assistant"
     }
   ]
 }
