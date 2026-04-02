@@ -1,0 +1,86 @@
+{
+  "name": "agent-seo",
+  "description": "An agent specialized in SEO analysis and optimization tasks.",
+  "skills": [
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "keyword-research"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "competitor-analysis"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "serp-analysis"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "content-gap-analysis"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "seo-content-writer"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "geo-content-optimizer"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "meta-tags-optimizer"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "schema-markup-generator"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "on-page-seo-auditor"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "technical-seo-checker"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "internal-linking-optimizer"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "content-refresher"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "rank-tracker"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "backlink-analyzer"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "performance-reporter"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "alert-manager"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "content-quality-auditor"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "domain-authority-auditor"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "entity-optimizer"
+    },
+    {
+      "repo": "https://github.com/aaron-he-zhu/seo-geo-claude-skills",
+      "skillName": "memory-management"
+    }
+  ]
+}
