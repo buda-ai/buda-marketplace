@@ -10,32 +10,25 @@ Buda reads this repository to populate its Marketplace, where users can discover
 
 ## Repository Structure
 
+This repository follows the [Agent Companies specification](https://agentcompanies.io/specification), which extends the [Agent Skills specification](https://agentskills.io/specification).
+
 ```
-skills/                              # Skill definitions (any layout)
+COMPANY.md                           # Company root manifest
+skills/                              # Skill definitions
 └── skill-name/
     ├── SKILL.md                     # Required: metadata + instructions
-    ├── README.md                    # Optional: marketplace listing page
-    ├── scripts/                     # Optional: executable code
-    ├── references/                  # Optional: documentation
-    └── assets/                      # Optional: templates, resources
-
-.buda/                               # Agents and Teams
-├── agents/
-│   └── agent-name/
-│       ├── agent.json               # Required: agent manifest
-│       ├── AGENTS.md                # Optional: instructions
-│       └── README.md                # Optional: listing page (takes priority)
-└── teams/
-    └── team-name/
-        ├── team.json                # Required: team manifest
-        └── README.md                # Optional: listing page
+    └── README.md                    # Optional: marketplace listing page
+agents/                              # Agent definitions
+└── agent-name/
+    └── AGENTS.md                    # Role, instructions, and attached skills
+teams/                               # Team definitions
+└── team-name/
+    └── TEAM.md                      # Team manifest
 ```
 
 ## skills/
 
 Skills follow the [Agent Skills specification](https://agentskills.io/specification). Each subdirectory containing a `SKILL.md` is a self-contained skill.
-
-If a `README.md` exists alongside `SKILL.md`, Buda uses it as the marketplace listing page instead.
 
 ### SKILL.md Frontmatter Fields
 
@@ -62,62 +55,63 @@ description: A description of what this skill does and when to use it.
 - Keep `SKILL.md` under 500 lines; move detailed content to `references/`
 - The `name` field must match the parent directory name exactly
 - Write descriptions that include keywords agents can use to identify relevant tasks
-- Scripts in `scripts/` should be self-contained with clear error messages
 
-## .buda/agents/
+## agents/
 
-Agents are pre-configured Buda agents. When a user installs an agent from the Marketplace, Buda provisions it with the defined `AGENTS.md` and installs all listed skills automatically.
+Each subdirectory defines one agent role. `AGENTS.md` contains YAML frontmatter and a markdown instruction body.
 
-### agent.json Format
+### AGENTS.md Frontmatter Fields
 
-```json
-{
-  "name": "My Agent",
-  "description": "One-line description shown on the marketplace card.",
-  "skills": [
-    {
-      "repo": "https://github.com/org/repo",
-      "skillName": "skill-name"
-    }
-  ]
-}
+| Field       | Required    | Notes                                      |
+|-------------|-------------|--------------------------------------------|
+| `name`      | Yes         | Human-readable name                        |
+| `description` | Yes       | Short discovery description                |
+| `slug`      | Recommended | Stable portable identity                   |
+| `schema`    | No          | `agentcompanies/v1`                        |
+| `skills`    | No          | List of skill slugs or shortnames to attach |
+
+### Minimal AGENTS.md Example
+
+```yaml
+---
+schema: agentcompanies/v1
+name: My Agent
+description: What this agent does.
+skills:
+  - skill-name
+---
+
+Agent instructions go here.
 ```
 
-| Field              | Required | Notes                                          |
-|--------------------|----------|------------------------------------------------|
-| `name`             | Yes      | Display name in the marketplace                |
-| `description`      | Yes      | One-line description on the listing card       |
-| `skills`           | Yes      | List of skill dependencies                     |
-| `skills[].repo`    | Yes      | GitHub URL of the repository containing the skill |
-| `skills[].skillName` | Yes    | Directory name containing the `SKILL.md`       |
+## teams/
 
-`AGENTS.md` is optional — defines the agent's role and behavioral instructions. If `README.md` exists, it takes priority as the listing page.
+Each subdirectory defines one team. `TEAM.md` contains YAML frontmatter describing the team and its members.
 
-## .buda/teams/
+### Minimal TEAM.md Example
 
-Teams are groups of agents that collaborate on complex workflows.
-
-### team.json Format
-
-```json
-{
-  "name": "My Team",
-  "description": "One-line description shown on the marketplace card.",
-  "agents": [
-    {
-      "repo": "https://github.com/org/repo",
-      "agentName": "agent-name"
-    }
-  ]
-}
+```yaml
+---
+schema: agentcompanies/v1
+name: My Team
+description: What this team does.
+includes:
+  - ../agent-name/AGENTS.md
+---
 ```
 
-| Field               | Required | Notes                                           |
-|---------------------|----------|-------------------------------------------------|
-| `name`              | Yes      | Display name in the marketplace                 |
-| `description`       | Yes      | One-line description on the listing card        |
-| `agents`            | Yes      | List of member agents                           |
-| `agents[].repo`     | Yes      | GitHub URL of the repository containing the agent |
-| `agents[].agentName`| Yes      | Directory name under `.buda/agents/`            |
+## External Skill References
 
-`README.md` is optional — if present, used as the team's listing page.
+To reference skills from external repositories, use `metadata.sources` in the frontmatter:
+
+```yaml
+skills:
+  - keyword-research
+metadata:
+  sources:
+    - kind: github-dir
+      repo: aaron-he-zhu/seo-geo-claude-skills
+      path: research/keyword-research
+      commit: main
+      url: https://github.com/aaron-he-zhu/seo-geo-claude-skills
+```
