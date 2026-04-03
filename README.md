@@ -8,9 +8,13 @@ Buda reads this repository to populate its Marketplace. Users can browse and ins
 
 Buda is a multi-agent AI platform that lets you run a team of AI agents as your workforce. Each agent has its own persistent cloud workspace (Drive), and can operate a browser, terminal, and Git — all visible in one UI. Agents can be deployed to Discord, Slack, Telegram, and more. Skills extend what agents can do without writing code.
 
+Browse the live Marketplace at **[buda.im/marketplace](https://buda.im/marketplace)**.
+
 ## Repository Structure
 
-This repository follows the [Buda Marketplace specification](https://buda.im/docs/create-skill-repo).
+This repository follows two specifications:
+- **[Buda Marketplace spec](https://buda.im/docs/create-skill-repo)** — how Buda discovers and publishes Skills, Agents, and Teams from this repo
+- **[Agent Companies spec](https://agentcompanies.io/specification)** — the open standard for structuring agent packages (`COMPANY.md`, `AGENTS.md`, `TEAM.md`, `SKILL.md`)
 
 ```
 skills/                    # Skill definitions (Agent Skills spec)
