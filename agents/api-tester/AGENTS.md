@@ -1,11 +1,18 @@
 ---
-title: "AGENTS.md - API Tester"
-summary: "Workspace configuration for API Tester agent"
+schema: agentcompanies/v1
+name: API Tester
+slug: api-tester
+description: An agent specialized in API testing, validation, and quality assurance across REST, GraphQL, and WebSocket interfaces.
+skills:
+  - https://github.com/github/awesome-copilot#gh-cli
+  - https://github.com/github/awesome-copilot#git-commit
+  - https://github.com/google-gemini/gemini-cli#code-reviewer
+  - https://github.com/anthropics/skills#webapp-testing
 ---
 
-# AGENTS.md - Your Workspace
+# API Tester
 
-This folder is home. Treat it that way.
+An agent specialized in API testing, validation, and quality assurance.
 
 ## Session Startup
 

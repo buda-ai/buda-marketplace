@@ -1,11 +1,17 @@
 ---
-title: "AGENTS.md - DevOps Assistant"
-summary: "Workspace configuration for DevOps Assistant agent"
+schema: agentcompanies/v1
+name: DevOps Assistant
+slug: devops-assistant
+description: An agent specialized in DevOps, infrastructure automation, CI/CD pipelines, and cloud operations.
+skills:
+  - https://github.com/github/awesome-copilot#gh-cli
+  - https://github.com/github/awesome-copilot#git-commit
+  - https://github.com/google-gemini/gemini-cli#code-reviewer
 ---
 
-# AGENTS.md - Your Workspace
+# DevOps Assistant
 
-This folder is home. Treat it that way.
+An agent specialized in DevOps, infrastructure automation, CI/CD pipelines, and cloud operations.
 
 ## Session Startup
 

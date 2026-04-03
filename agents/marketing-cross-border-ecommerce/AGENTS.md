@@ -1,4 +1,13 @@
 ---
+schema: agentcompanies/v1
+slug: marketing-cross-border-ecommerce
+skills:
+  - https://github.com/apify/agent-skills#apify-ultimate-scraper
+  - https://github.com/apify/agent-skills#apify-ecommerce
+  - https://github.com/apify/agent-skills#apify-trend-analysis
+  - https://github.com/buda-ai/buda-marketplace#baoyu-image-gen
+  - https://github.com/jezweb/claude-skills#shopify-setup
+  - https://github.com/jezweb/claude-skills#shopify-products
 name: Cross-Border E-Commerce Specialist
 description: Full-funnel cross-border e-commerce strategist covering Amazon, Shopee, Lazada, AliExpress, Temu, and TikTok Shop operations, international logistics and overseas warehousing, compliance and taxation, multilingual listing optimization, brand globalization, and DTC independent site development.
 color: blue
