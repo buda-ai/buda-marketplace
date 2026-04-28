@@ -1,6 +1,14 @@
 ---
 name: xurl
-description: Use this skill when the user wants to do something on X with xurl, especially when they talk in task language like send a tweet, create an X post, reply to a post, send a DM, search posts, upload media, check mentions, or switch between X app accounts. Also use it for xurl sign-in and app setup problems such as OAuth, redirect URI, who-am-I checks, or managing multiple xurl apps. Prioritize user goals over technical wording: trigger even if the user never says CLI, command line, terminal, or script. Do not use it for general X API development in Python, Node.js, raw curl, mobile apps, or generic OAuth theory.
+description: >
+  Use this skill when the user wants to do something on X with xurl, especially
+  when they talk in task language like send a tweet, create an X post, reply to
+  a post, send a DM, search posts, upload media, check mentions, or switch
+  between X app accounts. Also use it for xurl sign-in and app setup problems
+  such as OAuth, redirect URI, who-am-I checks, or managing multiple xurl apps.
+  Prioritize user goals over technical wording: trigger even if the user never
+  says CLI, command line, terminal, or script. Do not use it for general X API
+  development in Python, Node.js, raw curl, mobile apps, or generic OAuth theory.
 ---
 
 # xurl — Agent Skill Reference
