@@ -1,5 +1,5 @@
 #!/bin/bash
-# Simple wrapper around tmux for Claude Code to interact with interactive programs
+# Simple wrapper around tmux for AI agent to interact with interactive programs
 
 set -euo pipefail
 
