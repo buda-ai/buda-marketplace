@@ -1,6 +1,16 @@
 ---
 name: buda-youtube-to-script
-description: Use this skill whenever the user provides a YouTube or other video URL and asks to create, generate, rewrite, repurpose, summarize into, or get a new talking script / voiceover script / short-form video script / 口播稿 / 小红书口播稿 / 抖音口播稿. Trigger strongly on phrases like "get new talking script", "生成口播稿", "根据这个视频写脚本", "把这个 YouTube 视频变成口播", or when the user gives a video URL plus an angle/prompt. This skill is fully self-contained: it downloads the source audio (and optionally video) with the bundled yt-dlp helper, transcribes the audio with Whisper, reads the bundled `assets/talking-script-template.md`, then produces a new template-based talking script. No other skill needs to be installed.
+description: >-
+  Use this skill whenever the user provides a YouTube or other video URL and
+  asks to create, generate, rewrite, repurpose, summarize into, or get a new
+  talking script, voiceover script, or short-form video script. Trigger
+  strongly on phrases like "get new talking script", "rewrite this video as
+  a script", "turn this YouTube video into a voiceover", or when the user
+  gives a video URL plus an angle or prompt. This skill is fully
+  self-contained — it downloads the source audio (and optionally video) with
+  the bundled yt-dlp helper, transcribes the audio with Whisper, reads the
+  bundled assets/talking-script-template.md, then produces a new
+  template-based talking script. No other skill needs to be installed.
 ---
 
 # YouTube to Talking Script
