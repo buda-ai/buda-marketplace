@@ -125,21 +125,32 @@ bash /space/.agents/skills/buda-youtube-to-script/scripts/download-audio.sh \
 
 This saves the video to `$WORKDIR/video/`. If audio download failed but video exists, extract audio with `ffmpeg`.
 
-### 5. Transcribe with Whisper
+### 5. Transcribe with the Buda `whisper` tool
 
-Use the Whisper tool on the downloaded MP3 (or other audio file).
+Do NOT install `openai-whisper`, `whisper.cpp`, or call OpenAI's REST API
+directly. Buda exposes a native `whisper` tool — invoke it as a tool call,
+not via bash.
 
-- Use `response_format: text` for a clean transcript, or `verbose_json` if timestamps are useful.
-- Use `language` only when obvious or requested. For English videos, `en`; for Chinese videos, `zh`.
-- Add a short `prompt` if the video has known jargon, creator names, products, or acronyms.
+Tool name: `whisper`
 
-Save the transcript to:
+Input fields:
 
-```text
-$WORKDIR/transcript.txt
-```
+- `audio_path` (required) — absolute path to the audio file on the agent
+  drive, e.g. `$WORKDIR/audio/<downloaded>.mp3`
+- `response_format` (optional) — `text` for a clean transcript, or
+  `verbose_json` if timestamps are useful. Default: `text`.
+- `language` (optional) — ISO code such as `en` or `zh`. Set only when
+  obvious or requested.
+- `prompt` (optional) — short hint with creator names, products, jargon, or
+  acronyms that appear in the audio.
 
-If the tool returns JSON, also save `$WORKDIR/transcript.json`.
+Save the result to `$WORKDIR/transcript.txt`. If `verbose_json` was used,
+also save the raw payload to `$WORKDIR/transcript.json`.
+
+If the `whisper` tool is unavailable in the current agent (disabled in
+settings, or the user's plan does not include premium tools), tell the
+user explicitly that transcription cannot proceed — do not silently fall
+back to a local install.
 
 ### 6. Read the talking script template
 
@@ -243,19 +254,25 @@ If the video is private, members-only, age-restricted, geo-restricted, or unavai
 
 ### Whisper fails
 
-Check:
+If the `whisper` tool returns an error, check:
 
-- Audio file exists
-- File is not zero bytes
-- Audio format is supported
+- The `audio_path` resolves to a real file on the agent drive
+- The file is not zero bytes
+- The format is one of the formats the Buda whisper tool supports
+  (mp3, m4a, wav, flac, mp4, webm, ogg)
 
-If needed, convert audio to a clean MP3:
+If the format looks wrong or the file looks corrupt, normalize it first:
 
 ```bash
 ffmpeg -y -i "$AUDIO_FILE" -ac 1 -ar 16000 "$WORKDIR/audio/whisper-ready.mp3"
 ```
 
-Then retry Whisper.
+Then call the `whisper` tool again with the normalized path.
+
+If the tool reports it is not available (disabled in agent settings, or
+the user's plan does not include premium tools), stop and tell the user.
+Do not work around it by installing a local whisper binary or calling
+OpenAI directly.
 
 ### Template missing
 
