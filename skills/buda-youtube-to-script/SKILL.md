@@ -4,10 +4,11 @@ description: >-
   Use this skill whenever the user provides a YouTube or other video URL and
   asks to create, generate, rewrite, repurpose, summarize into, or get a new
   talking script, voiceover script, or short-form video script. Trigger
-  strongly on phrases like "get new talking script", "rewrite this video as
+  strongly when this skill is selected and the user sends only a video URL,
+  or on phrases like "get new talking script", "rewrite this video as
   a script", "turn this YouTube video into a voiceover", or when the user
   gives a video URL plus an angle or prompt. This skill is fully
-  self-contained — it downloads the source audio (and optionally video) with
+  self-contained — it downloads the source video and audio with
   the bundled yt-dlp helper, transcribes the audio with Whisper, reads the
   bundled assets/talking-script-template.md, then produces a new
   template-based talking script. No other skill needs to be installed.
@@ -15,25 +16,24 @@ description: >-
 
 # YouTube to Talking Script
 
-Turn a video URL into a new talking script by downloading the source audio, transcribing it, and rewriting the content into the user's requested angle.
+Turn a video URL into a new talking script by downloading the source video and audio, transcribing it, and rewriting the content into the user's requested angle.
 
 This skill is self-contained. It does NOT depend on any separate downloader skill. The yt-dlp download logic ships with this skill at `scripts/download-audio.sh`, and the output template ships at `assets/talking-script-template.md`.
 
-Important default: for script-generation tasks, prefer downloading audio only. Do not download the full MP4 unless the user explicitly asks to keep the video, wants video analysis, or audio extraction fails and a video fallback is necessary.
+Important default: for Buda demos and script-generation tasks, keep the source video as a user-facing artifact together with the MP3, transcript, and final script.
 
 ## Default behavior
 
 Unless the user says otherwise:
 
-- Output language: Chinese
-- Script style: short-form talking script suitable for 小红书 / 抖音 / YouTube Shorts
+- Output language: English
+- Script style: short-form talking script suitable for Red Note / TikTok / YouTube Shorts
 - Target length: 60–90 seconds
 - Rewrite mode: creative repurposing, not a literal translation or transcript summary
 - Preserve the source video's core idea, but make the final script natural for a human to speak
 - Include a strong 0–3 second hook
 - Save all artifacts under `/agent/outputs/talking-scripts/<safe-title-or-id>-<YYYYMMDD-HHMMSS>/`
-- By default keep the downloaded audio, transcript, and final script
-- Download and keep the video only if the user explicitly asks for it or a later step truly needs it
+- By default keep the downloaded source video, MP3 audio, transcript, and final script
 
 ## Inputs to extract from the user
 
@@ -43,14 +43,14 @@ Required:
 
 Optional:
 
-- Angle / prompt, for example: `get new talking script`, `面向创业者`, `做成 60 秒`, `小红书风格`, `重点讲 AI 工具如何提升效率`
+- Angle / prompt, for example: `get new talking script`, `for entrepreneurs`, `make it 60 seconds`, `Red Note style`, `focus on how AI tools boost efficiency`
 - Target platform
 - Target audience
 - Target duration
 - Output language
 - Whether to include timestamps, subtitles, or title ideas
 
-If the user gives only a URL and a vague phrase like `get new talking script`, proceed with the defaults. Do not ask unnecessary clarification questions.
+If the user gives only a URL, proceed with the defaults. Do not ask unnecessary clarification questions.
 
 ## Workflow
 
@@ -80,9 +80,9 @@ You normally do NOT need to install yt-dlp manually. The bundled download script
 
 Auto-install needs `python3` (or `python`) available, which the Buda sandbox provides by default. `ffmpeg` is required for MP3 extraction and is also preinstalled.
 
-### 3. Download audio (default) with the bundled helper
+### 3. Download source video and audio with the bundled helper
 
-Audio is the default artifact because transcription is the main goal. Use the bundled script. Resolve its path against this skill directory:
+Keep both source video and MP3 audio as user-facing artifacts. Use the bundled script. Resolve its path against this skill directory:
 
 ```text
 /space/.agents/skills/buda-youtube-to-script/scripts/download-audio.sh
@@ -90,12 +90,13 @@ Audio is the default artifact because transcription is the main goal. Use the bu
 
 ```bash
 bash /space/.agents/skills/buda-youtube-to-script/scripts/download-audio.sh \
-  -o "$WORKDIR" \
+  -o "$WORKDIR" --video \
   "VIDEO_URL"
 ```
 
 The helper:
 
+- Saves the source video to `$WORKDIR/video/` when `--video` is used
 - Saves the MP3 to `$WORKDIR/audio/`
 - For YouTube, tries `--cookies-from-browser chrome` first, then automatically retries without cookies
 - For non-YouTube sites, tries without cookies first, then retries with cookies
@@ -113,9 +114,9 @@ yt-dlp \
 
 Retry without `--cookies-from-browser chrome` if the browser profile is unavailable.
 
-### 4. Optional video download
+### 4. Video fallback
 
-Only if the user explicitly wants the MP4, wants frames/visual analysis, or audio download fails, also pull the full video:
+If the video was not downloaded in the first pass, or if the UI should show a video artifact, pull the full video:
 
 ```bash
 bash /space/.agents/skills/buda-youtube-to-script/scripts/download-audio.sh \
@@ -187,7 +188,7 @@ Quality bar:
 
 - Start with a punchy hook in the first timeline row
 - Make the voiceover conversational and speakable
-- Avoid academic summary language like “本文主要讲述了”
+- Avoid academic summary language like “this article mainly discusses”
 - Prefer concrete examples over vague claims
 - Keep sentences short enough for spoken delivery
 - Keep the timeline realistic for the target duration
@@ -206,9 +207,11 @@ Save at least:
 $WORKDIR/talking-script.md
 $WORKDIR/transcript.txt
 $WORKDIR/audio/<downloaded-file>.mp3
+$WORKDIR/video/<downloaded-file>
 ```
 
 The MP3 is a required output unless the source platform truly prevents audio download. Treat the MP3 as a user-facing artifact that should be previewed in the UI.
+The source video is also a user-facing artifact for the Buda demo and should be preserved when possible.
 
 ### 9. Report back to the user
 
@@ -216,8 +219,7 @@ Keep the final response concise:
 
 - Say the script is generated
 - Provide the saved path
-- Mention that the MP3 and transcript were also saved
-- Mention video only if it was downloaded
+- Mention that the source video, MP3, transcript, and script were saved
 - If `talking-script.md` should be previewed, first verify it with the Buda send-file script, then include the returned `[send:...]` marker in the reply
 - Verify the downloaded MP3 with the Buda send-file script and include the returned `[send:...]` marker in the reply so the frontend UI shows a file card for the audio
 
@@ -264,6 +266,6 @@ Use the fallback template shown above and tell the user the original template fi
 ## Example prompts this skill should handle
 
 - `get new talking script https://www.youtube.com/watch?v=abc123`
-- `根据这个 YouTube 视频生成口播稿 https://youtu.be/abc123，角度是给 AI 创业者看的`
-- `下载这个视频和音频，转文字，然后用模板写一个小红书口播稿：https://youtube.com/watch?v=abc123`
-- `把这个视频改成 60 秒中文短视频脚本，风格犀利一点：https://youtu.be/abc123`
+- `generate a talking script from this YouTube video https://youtu.be/abc123, angled for AI entrepreneurs`
+- `download this video and audio, transcribe it, then write a Red Note talking script using the template: https://youtube.com/watch?v=abc123`
+- `turn this video into a 60-second short-form script, make it punchy: https://youtu.be/abc123`

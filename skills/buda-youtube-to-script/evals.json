@@ -4,18 +4,18 @@
     {
       "id": 1,
       "prompt": "get new talking script https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "expected_output": "Uses the bundled download-audio.sh helper to download audio only, transcribes with Whisper, reads the talking-script template, and saves a Chinese short-form talking script plus transcript and MP3.",
+      "expected_output": "Uses the bundled download-audio.sh helper to download audio only, transcribes with Whisper, reads the talking-script template, and saves a short-form talking script plus transcript and MP3.",
       "files": []
     },
     {
       "id": 2,
-      "prompt": "根据这个 YouTube 视频生成一个 60 秒小红书口播稿，角度是 AI 创业者如何提升效率：https://youtu.be/example123",
-      "expected_output": "Uses the supplied angle and duration, creates a template-based Chinese talking script, and reports saved output paths.",
+      "prompt": "generate a 60-second Red Note talking script from this YouTube video, angled on how AI entrepreneurs can boost efficiency: https://youtu.be/example123",
+      "expected_output": "Uses the supplied angle and duration, creates a template-based talking script, and reports saved output paths.",
       "files": []
     },
     {
       "id": 3,
-      "prompt": "下载这个视频和音频，转文字，然后写一个新的 talking script：https://youtube.com/watch?v=example456",
+      "prompt": "download the video and audio, transcribe it, then write a new talking script: https://youtube.com/watch?v=example456",
       "expected_output": "Runs the full pipeline self-contained: audio download via bundled helper (and video since explicitly requested), Whisper transcription, rewritten talking script generation, and artifact saving.",
       "files": []
     }
