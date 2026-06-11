@@ -4,12 +4,12 @@ Turn any YouTube (or other) video URL into a ready-to-record short-form talking 
 
 ## What it does
 
-Give it a video URL (plus an optional angle like "面向创业者" or "做成 60 秒"), and the skill:
+Give it a video URL, and the skill:
 
-1. Downloads the source audio with a bundled yt-dlp helper (auto-installs yt-dlp if missing)
+1. Downloads the source video and MP3 audio with a bundled yt-dlp helper (auto-installs yt-dlp if missing)
 2. Transcribes the audio with Whisper
 3. Rewrites the content into a new talking script using a structured template (hook, timeline, full read-through, title options)
-4. Saves the script, transcript, and MP3 as durable artifacts and previews them in the UI
+4. Saves the source video, script, transcript, and MP3 as durable artifacts and previews them in the UI
 
 ## Why self-contained
 
@@ -17,13 +17,14 @@ This skill bundles its own download logic at `scripts/download-audio.sh` — no 
 
 ## Defaults
 
-- Output language: Chinese
-- Style: short-form for 小红书 / 抖音 / YouTube Shorts
+- Output language: English
+- Style: short-form for Red Note / TikTok / YouTube Shorts
 - Length: 60–90 seconds, with a strong 0–3s hook
-- Audio-only download by default; video only when explicitly requested
+- Keeps source video, MP3 audio, transcript, and final script by default
 
 ## Example prompts
 
+- `https://www.youtube.com/watch?v=abc123`
 - `get new talking script https://www.youtube.com/watch?v=abc123`
-- `根据这个 YouTube 视频生成口播稿，角度是给 AI 创业者看的：https://youtu.be/abc123`
-- `把这个视频改成 60 秒中文短视频脚本，风格犀利一点：https://youtu.be/abc123`
+- `generate a talking script from this YouTube video, angled for AI entrepreneurs: https://youtu.be/abc123`
+- `turn this video into a 60-second short-form script, make it punchy: https://youtu.be/abc123`
